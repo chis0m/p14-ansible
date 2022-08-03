@@ -7,4 +7,6 @@
       command: date
 
     - name: Creates directory
-      command: mkdir /testdir creates=/folder # will ensure not to create the folder if it exists
+      file:
+        path: ~/testDir
+        state: directory
