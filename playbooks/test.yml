@@ -1,0 +1,10 @@
+---
+-
+  name: Play 1
+  hosts: nginx
+  tasks:
+    - name: Execute command 'date'
+      command: date
+
+    - name: Creates directory
+      command: mkdir /testdir creates=/folder # will ensure not to create the folder if it exists
