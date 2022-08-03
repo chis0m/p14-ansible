@@ -2,7 +2,7 @@
 172.31.19.98
 
 [nginx]
-34.205.72.130
+34.205.72.130 ansible_ssh_user='ubuntu'
 
 [sonarqube]
 172.31.19.98
