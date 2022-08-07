@@ -1,7 +1,18 @@
 pipeline {
   agent any
 
+  parameters {
+    string(name: 'inventory', defaultValue: 'dev',  description: 'This is the inventory file for the environment to deploy configuration')
+  }
+
   stages {
+    stage('Initial Cleanup') {
+      steps {
+        dir("${WORKSPACE}") {
+            deleteDir()
+        }
+      }
+    }
     stage('Build') {
       steps {
         script {
@@ -9,37 +20,5 @@ pipeline {
         }
       }
     }
-
-    stage('Test') {
-      steps {
-        script {
-          sh 'echo "Testing Stage"'
-        }
-      }
-    }
-
-    stage('Package') {
-      steps {
-        script {
-          sh 'echo "Package Stage"'
-        }
-      }
-    }
-
-    stage('Deploy') {
-      steps {
-        script {
-          sh 'echo "Deploy Stage"'
-        }
-      }
-    }
-
-    stage('Clean Up') {
-      steps {
-        script {
-          sh 'echo "Clean Up Stage"'
-        }
-      }
-    }            
   }
 }
