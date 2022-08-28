@@ -5,7 +5,7 @@ roles_path=/Users/chisom/Darey.io/todo-app-ci-cd/todo-app-ansible/roles
 log_path=~/ansible.log
 host_key_checking = False
 gathering = smart
-;ansible_python_interpreter=/usr/bin/python3
+ansible_python_interpreter=/usr/bin/python3
 allow_world_readable_tmpfiles=true
 
 

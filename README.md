@@ -45,3 +45,10 @@ ssh_args = -o ControlMaster=auto -o ControlPersist=30m -o ControlPath=/tmp/ansib
     ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
   }
 ```
+
+Import Setup to take note of In Jenkins Server
+=============================
+- Install `ansible plugin`
+- Goto `Global Configuration --> Ansible` and add ansible exec path e.g `/usr/bin/` for ubuntu
+- Goto `http://ip:8080/credentials/store/system/domain/_/` click on Add `Credentials`
+- Goto `pipeline-syntax` and generate playbook script
