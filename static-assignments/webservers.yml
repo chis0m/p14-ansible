@@ -2,9 +2,3 @@
   - hosts: webservers
     roles:
        - webserver
-    become: true
-    tasks:
-      - name: Install nginx rpm from a local file
-        ansible.builtin.dnf:
-          name: /usr/local/src/nginx-release-centos-6-0.el6.ngx.noarch.rpm
-          state: present

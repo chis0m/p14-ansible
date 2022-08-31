@@ -10,7 +10,7 @@
 
 
 - name: clone tooling repo
-  git: repo="https://github.com/chis0m/tooling.git" dest="/home/ec2-user/tooling"
+  git: repo="https://github.com/chis0m/tooling.git" dest="/home/ubuntu/tooling"
 
 - name: set up Apache virtual Host
   template: src="apache-conf.j2" dest="/etc/apache2/sites-available/tooling.conf"
@@ -23,9 +23,11 @@
 
 - name: allow HTTTP Traffic on port 22
   ufw: rule=allow port="22" proto=tcp state=enabled
+  become: yes
 
 - name: allow HTTTP Traffic on port 80
   ufw: rule=allow port="80" proto=tcp state=enabled
+  become: yes
 
 - name: restart apache2
   service: name=apache2 state=restarted enabled=yes

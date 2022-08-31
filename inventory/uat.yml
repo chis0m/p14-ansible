@@ -1,28 +1,22 @@
-#[db]
-#54.211.103.170 ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=~/.ssh/devum.pem ansible_python_interpreter=/usr/bin/python3.9
+[db]
+3.83.119.223 ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=~/.ssh/devum.pem
 
 [lb]
-3.88.176.208
+54.227.97.100
 
-#[nfs]
-#3.92.206.117
-#
-#[webservers]
-#18.212.175.26
-#44.205.255.58
+[nfs]
+3.95.192.122
+
+[webservers]
+54.197.121.47
+18.208.150.127
 
 [deployments:children]
 lb
-#nfs
-#webservers
+nfs
+webservers
 
 [deployments:vars]
 ansible_ssh_user='ubuntu'
 ansible_ssh_private_key_file=~/.ssh/devum.pem
-#ansible_python_interpreter=/usr/bin/python3
-
-
-  #[webservers]
-  #54.158.123.235 ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=~/.ssh/devum.pem
-  #
-#54.175.109.4 ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=~/.ssh/devum.pem
+ansible_python_interpreter=/usr/bin/python3
