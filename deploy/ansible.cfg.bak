@@ -1,7 +1,6 @@
 [defaults]
 timeout = 160
 callback_whitelist = profile_tasks
-roles_path=/Users/chisom/Darey.io/todo-app-ci-cd/todo-app-ansible/roles
 log_path=~/ansible.log
 host_key_checking = False
 gathering = smart
