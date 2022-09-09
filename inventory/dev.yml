@@ -7,15 +7,9 @@
 [nfs]
 174.129.182.47
 
-[tooling]
-44.203.5.113
-
-[todo]
-44.206.232.205
-
 [webservers]
-tooling
-todo
+44.203.5.113
+44.206.232.205
 
 [deployments:children]
 lb
