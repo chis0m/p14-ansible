@@ -35,9 +35,14 @@ pipeline {
     stage('Run Ansible playbook') {
       steps {
           sh 'ansible all --list-hosts'
-          ansiblePlaybook become: true, colorized: true, credentialsId: 'private', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'
+          ansiblePlaybook become: true, colorized: true, credentialsId: 'private', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}.yml', playbook: 'playbooks/site.yml'
         }
     }
 
+    stage('Clean Workspace after build'){
+      steps{
+        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
+      }
+    }
   }
 }
