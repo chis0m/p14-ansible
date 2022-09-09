@@ -34,6 +34,7 @@ pipeline {
 
     stage('Run Ansible playbook') {
       steps {
+          sh 'ansible all --list-hosts'
           ansiblePlaybook become: true, colorized: true, credentialsId: 'private', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'
         }
     }
