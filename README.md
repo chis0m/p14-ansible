@@ -52,3 +52,5 @@ Import Setup to take note of In Jenkins Server
 - Goto `Global Configuration --> Ansible` and add ansible exec path e.g `/usr/bin/` for ubuntu
 - Goto `http://ip:8080/credentials/store/system/domain/_/` click on Add `Credentials`
 - Goto `pipeline-syntax` and generate playbook script
+
+NOTE: When using jenkins to deploy ansible remove `ansible_ssh_private_key_file=~/.ssh/devum.pem` because you have already added your ssh_key to jenkins
