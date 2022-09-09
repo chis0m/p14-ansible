@@ -21,14 +21,14 @@ pipeline {
 
     stage('Checkout SCM') {
         steps{
-          git branch: 'master', url: 'https://github.com/chis0m/p14-ansible.git'
+          git branch: 'feature/project14', url: 'https://github.com/chis0m/p14-ansible.git'
         }
       }
 
     stage('Prepare Ansible For Execution') {
       steps {
-        sh 'echo ${WORKSPACE}' 
-        sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'  
+        sh 'echo ${WORKSPACE}'
+        sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'
       }
     }
 
