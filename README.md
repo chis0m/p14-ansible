@@ -56,3 +56,21 @@ Import Setup to take note of In Jenkins Server
 - Goto `pipeline-syntax` and generate playbook script
 
 NOTE: When using jenkins to deploy ansible remove `ansible_ssh_private_key_file=~/.ssh/devum.pem` because you have already added your ssh_key to jenkins
+
+Install PHP Dependencies
+========================
+```bash
+sudo apt install -y zip libapache2-mod-php phploc php-{xml,bcmath,bz2,intl,gd,mbstring,mysql,zip}
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+```
+
+Install plugins for artifactory
+===============================================
+You need to install `Plot` and `Artifactory` plugins on Jenkins
+- We will use plot plugin to display tests reports, and code coverage information.
+- The Artifactory plugin will be used to easily upload code artifacts into an Artifactory server.
+
+Setting up Jenkins with Artifactory server
+==========================================
+- Create and artifactory server
