@@ -1,0 +1,12 @@
+---
+-
+  name: Play 1
+  hosts: nginx
+  tasks:
+    - name: Execute command 'date'
+      command: date
+
+    - name: Creates directory
+      file:
+        path: ~/testDir
+        state: directory
