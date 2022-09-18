@@ -74,3 +74,8 @@ You need to install `Plot` and `Artifactory` plugins on Jenkins
 Setting up Jenkins with Artifactory server
 ==========================================
 - Create and artifactory server
+- It must be nothing less than 4gb of memory
+
+#### Prerequisites
+Install Artifactory on at least 2GM RAM, for AWS choose at least small or medium instance type.
+Default ports 8081 (for Artifactory REST APIs) and 8082 (for UI, and all other product’s APIs) needs to be opened.
