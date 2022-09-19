@@ -112,6 +112,7 @@ mysql_databases:
      encoding: utf8
      replicate: 1
 
+mysql_databases:
   - name: homestead
     collation: utf8_general_ci
     encoding: utf8
@@ -124,6 +125,7 @@ mysql_users:
      password: secret
      priv: '*.*:ALL,GRANT'
 
+mysql_users:
   - name: homestead
     host: 172.31.94.101
     password: sePret^i
