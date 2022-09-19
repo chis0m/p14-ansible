@@ -14,7 +14,7 @@
 #
 - name: import database file
   import_playbook: ../static-assignments/db.yml
-
+#
 #- name: import webservers file
 #  import_playbook: ../static-assignments/webservers.yml
 #
@@ -22,9 +22,9 @@
 #  import_playbook: ../static-assignments/lb.yml
 #  when: load_balancer_is_required
 
- - hosts: artifactory
- - name: artifactory assignment
-   ansible.builtin.import_playbook: ../static-assignments/artifactory.yml
+# - hosts: artifactory
+# - name: artifactory assignment
+#   ansible.builtin.import_playbook: ../static-assignments/artifactory.yml
 
 #- hosts: sonar
 #- name: sonar assignment
