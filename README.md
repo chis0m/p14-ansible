@@ -75,7 +75,70 @@ Setting up Jenkins with Artifactory server
 ==========================================
 - Create and artifactory server
 - It must be nothing less than 4gb of memory
+- After creation, default username and password are `admin`, `password` respectively
 
 #### Prerequisites
 Install Artifactory on at least 2GM RAM, for AWS choose at least small or medium instance type.
 Default ports 8081 (for Artifactory REST APIs) and 8082 (for UI, and all other product’s APIs) needs to be opened.
+
+Configure Artifactory In Jenkins
+=================================
+- Goto Manage `Jenkins --> Configure System`
+- Scroll down to `JFrog`, the click `Add JFrog from platform instance`
+- Server ID `artifactory-server`, URL `http://<your-instance-public-address>:8082`
+- username 'admin', password `your jfrog login password`
+- Click on `Test Connection`
+- Ignore the message
+```
+Found JFrog Artifactory 7.41.12 at http://54.160.148.114:8082/artifactory
+JFrog Distribution not found at http://54.160.148.114:8082/distribution
+```
+
+Integrate Artifactory repository with Jenkins
+==============================================
+- Clone this repo `https://github.com/darey-devops/php-todo.git`
+- Ensure the php packages have been installed as specified above
+- Create a Jenkinsfile in the php-todo project
+- Paste the following
+```Jenkinsfile
+pipeline {
+    agent any
+
+  stages {
+
+     stage("Initial cleanup") {
+          steps {
+            dir("${WORKSPACE}") {
+              deleteDir()
+            }
+          }
+        }
+
+    stage('Checkout SCM') {
+      steps {
+            git branch: 'main', url: 'https://github.com/chis0m/php-todo.git'
+      }
+    }
+
+    stage('Prepare Dependencies') {
+      steps {
+             sh 'mv .env.sample .env'
+             sh 'composer install'
+             sh 'php artisan migrate'
+             sh 'php artisan db:seed'
+             sh 'php artisan key:generate'
+      }
+    }
+   
+    stage('Execute Unit Tests') {
+      steps {
+             sh './vendor/bin/phpunit'
+      }
+    }    
+   
+  }
+}
+```
+
+- Goto your `mysSql roles` in p14-ansible project and new database `homestead`, user `homestead`, host `172.31.94.101` (Jenksins server Private IP)
+- Update the database connectivity requirements in the file .env.sample of php-todo app
