@@ -1,5 +1,5 @@
 [db]
-3.86.241.39 ansible_ssh_user='ec2-user'
+54.165.250.136 ansible_ssh_user='ec2-user'
 
 [lb]
 54.226.107.76
