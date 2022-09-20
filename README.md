@@ -100,9 +100,9 @@ Default ports 8081 (for Artifactory REST APIs) and 8082 (for UI, and all other p
 
 Configure Artifactory In Jenkins
 =================================
-- Goto Manage `Jenkins --> Configure System`
+- Goto Manage `Manage Jenkins --> Configure System`
 - Scroll down to `JFrog`, the click `Add JFrog from platform instance`
-- Server ID `artifactory-server`, URL `http://<your-instance-public-address>:8082`
+- Instance ID `artifactory-server`, URL `http://<your-instance-public-address>:8082`
 - username 'admin', password `your jfrog login password`
 - Click on `Test Connection`
 - Ignore the message
