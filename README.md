@@ -48,12 +48,17 @@ ssh_args = -o ControlMaster=auto -o ControlPersist=30m -o ControlPath=/tmp/ansib
   }
 ```
 
-Import Setup to take note of In Jenkins Server
+Important Setup to take note of In Jenkins Server
 =============================
+- Install Blue Ocean
+- Generate Github Personal Access Token - Tick the following permissions `repo`, `read:user`, `user:email` 
+- Use it to create a new pipeline for a github repo e.g https://github.com/chis0m/p14-ansible, so my project on jenkins will be p14-ansible 
+- Goto `Dasbhoard -> p14-ansible -> Configure -> Build Configuration` change script path to `deploy/Jenkinsfile`
 - Install `ansible plugin`
 - Goto `Global Configuration --> Ansible` and add ansible exec path e.g `/usr/bin/` for ubuntu
-- Goto `http://ip:8080/credentials/store/system/domain/_/` click on Add `Credentials`
-- Goto `pipeline-syntax` and generate playbook script
+- On the browser, Goto `http://jenkins-ip:8080/credentials/store/system/domain/_/` click on Add `Credentials`
+- Choose `SSH Username with private key`. Set ID: `ssh-private-key`,  username: `ubuntu`. CLick on `Enter directly` and add a copy of your ssh private key and save
+- Goto `Dasbhoard -> p14-ansible -> pipeline-syntax` and generate playbook script
 
 NOTE: When using jenkins to deploy ansible remove `ansible_ssh_private_key_file=~/.ssh/devum.pem` because you have already added your ssh_key to jenkins
 
