@@ -58,7 +58,19 @@ Important Setup to take note of In Jenkins Server
 - Goto `Global Configuration --> Ansible` and add ansible exec path e.g `/usr/bin/` for ubuntu
 - On the browser, Goto `http://jenkins-ip:8080/credentials/store/system/domain/_/` click on Add `Credentials`
 - Choose `SSH Username with private key`. Set ID: `ssh-private-key`,  username: `ubuntu`. CLick on `Enter directly` and add a copy of your ssh private key and save
-- Goto `Dasbhoard -> p14-ansible -> pipeline-syntax` and generate playbook script
+- Goto `Dasbhoard -> p14-ansible -> pipeline-syntax` and generate playbook script.
+
+ Set the following and leave every other thing as default
+
+`Playbook file path in workspace: playbooks/site.yml`
+`Inventory file path in workspace: inventory/{inventory}.yml`
+`SSH connection credentials: ubunu`
+`Use become: check`  
+`Disable the host SSH key check: check`  
+`Colorized output: check` 
+
+- Copy the generated syntax and add to your Jenkinsfile
+`ansiblePlaybook become: true, colorized: true, credentialsId: 'ssh-private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/{inventory}.yml', playbook: 'playbooks/site.yml'`
 
 NOTE: When using jenkins to deploy ansible remove `ansible_ssh_private_key_file=~/.ssh/devum.pem` because you have already added your ssh_key to jenkins
 
