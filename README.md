@@ -223,3 +223,19 @@ Note: We have already created this `target` repository PBL in our artifcatory se
       }
     }
 ```
+
+
+Deploy Application
+====================
+Append this:
+
+```Jenkinsfile
+    stage ('Deploy to Dev Environment') {
+      steps {
+        // changed feature/project14 to master 
+        build job: 'p14-ansible/master', parameters: [[$class: 'StringParameterValue', name: 'env', value: 'dev']], propagate: false, wait: true
+      }
+    }
+```
+
+This will trigger the p14-ansible project with the dev inventory (build parameter)
