@@ -57,7 +57,7 @@ mysql_slow_query_time: "2"
 
 # Memory settings (default values optimized ~512MB RAM).
 mysql_key_buffer_size: "256M"
-mysql_max_allowed_packet: "64M"
+mysql_max_allowed_packet: "200M"
 mysql_table_open_cache: "256"
 mysql_sort_buffer_size: "1M"
 mysql_read_buffer_size: "1M"
@@ -67,7 +67,7 @@ mysql_thread_cache_size: "8"
 mysql_query_cache_type: "0"
 mysql_query_cache_size: "16M"
 mysql_query_cache_limit: "1M"
-mysql_max_connections: "151"
+mysql_max_connections: "1024"
 mysql_tmp_table_size: "16M"
 mysql_max_heap_table_size: "16M"
 mysql_group_concat_max_len: "1024"
@@ -75,7 +75,7 @@ mysql_join_buffer_size: "262144"
 
 # Other settings.
 mysql_lower_case_table_names: "0"
-mysql_wait_timeout: "28800"
+mysql_wait_timeout: "48800"
 mysql_event_scheduler_state: "OFF"
 
 # InnoDB settings.
@@ -86,14 +86,14 @@ mysql_innodb_buffer_pool_size: "256M"
 mysql_innodb_log_file_size: "64M"
 mysql_innodb_log_buffer_size: "8M"
 mysql_innodb_flush_log_at_trx_commit: "1"
-mysql_innodb_lock_wait_timeout: "50"
+mysql_innodb_lock_wait_timeout: "100"
 
 # These settings require MySQL > 5.5.
 mysql_innodb_large_prefix: "1"
 mysql_innodb_file_format: "barracuda"
 
 # mysqldump settings.
-mysql_mysqldump_max_allowed_packet: "64M"
+mysql_mysqldump_max_allowed_packet: "200M"
 
 # Logging settings.
 mysql_log: ""
