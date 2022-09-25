@@ -7,6 +7,9 @@
 [nfs]
 174.129.182.47
 
+[todo]
+18.207.186.5 ansible_ssh_user='ec2-user'
+
 [webservers]
 44.203.5.113
 44.206.232.205

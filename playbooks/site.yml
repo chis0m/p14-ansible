@@ -3,33 +3,33 @@
 #  hosts: all
 #
 #- name: import common file
-#  import_playbook: ../static-assignments/common.yml
+#  import_playbook: ../static-assignments/common.yml #used
 #  tags:
 #    - always
 #
 #- name: include env-vars file
-#  import_playbook: ../dynamic-assignments/env-vars.yml
+#  import_playbook: ../dynamic-assignments/env-vars.yml #used
 #  tags:
 #    - always
 #
-- name: import database file
-  import_playbook: ../static-assignments/db.yml
+# - name: import database file
+#   import_playbook: ../static-assignments/db.yml #used
 #
 #- name: import webservers file
 #  import_playbook: ../static-assignments/webservers.yml
 #
 #- name: import Loadbalancers assignment
-#  import_playbook: ../static-assignments/lb.yml
+#  import_playbook: ../static-assignments/lb.yml #used
 #  when: load_balancer_is_required
 
 # - hosts: artifactory
 # - name: artifactory assignment
-#   ansible.builtin.import_playbook: ../static-assignments/artifactory.yml
+#   ansible.builtin.import_playbook: ../static-assignments/artifactory.yml #used
 
 #- hosts: sonar
 #- name: sonar assignment
 #  ansible.builtin.import_playbook: ../static-assignments/sonar.yml
 
-# - hosts: todo
-# - name: Deploy the todo application
-#   ansible.builtin.import_playbook: ../static-assignments/deployment.yml
+- hosts: todo
+- name: Deploy the todo application
+  ansible.builtin.import_playbook: ../static-assignments/deployment.yml #used
