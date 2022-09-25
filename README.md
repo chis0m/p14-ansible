@@ -239,3 +239,14 @@ Append this:
 ```
 
 This will trigger the p14-ansible project with the dev inventory (build parameter)
+
+- Go to p14-ansible project and add this to the playbook
+```yaml
+- name: Deploy the todo application
+  import_playbook: ../static-assignments/deployment.yml
+```
+- Go to the deployment.yml and at task `Download the artifact`, update the artifactory details. Incase you dont know how to do that: 
+  - go to artifactory server
+  - navigate to the artificats and at the top, you would see `set me up`
+  - Click on `set me up`, add your password
+  - CLick on `Deploy`. Copy the credentials seen and update the deployment.yaml
