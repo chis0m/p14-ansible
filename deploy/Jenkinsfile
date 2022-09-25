@@ -21,7 +21,7 @@ pipeline {
 
     stage('Checkout SCM') {
         steps{
-          git branch: 'feature/project14', url: 'https://github.com/chis0m/p14-ansible.git'
+          git branch: 'master', url: 'https://github.com/chis0m/p14-ansible.git'
         }
       }
 
