@@ -72,12 +72,12 @@ Important Setup to take note of In Jenkins Server
 - Copy the generated syntax and add to your Jenkinsfile
 `ansiblePlaybook become: true, colorized: true, credentialsId: 'ssh-private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/{inventory}.yml', playbook: 'playbooks/site.yml'`
 
-NOTE: When using jenkins to deploy ansible remove `ansible_ssh_private_key_file=~/.ssh/devum.pem` because you have already added your ssh_key to jenkins
+NOTE: When using jenkins to deploy ansible, remove `ansible_ssh_private_key_file=~/.ssh/devum.pem` from inventory file because you have already added your ssh_key to jenkins
 
 Install PHP Dependencies
 ========================
 ```bash
-sudo apt install -y zip libapache2-mod-php phploc php-{xml,bcmath,bz2,intl,gd,mbstring,mysql,zip}
+sudo apt install -y zip libapache2-mod-php phploc php-{xml,bcmath,bz2,intl,gd,mbstring,mysql,zip} mysql-client mysql
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 ```
