@@ -54,7 +54,7 @@ Important Setup to take note of In Jenkins Server
 - Generate Github Personal Access Token - Tick the following permissions `repo`, `read:user`, `user:email` 
 - Use it to create a new pipeline for a github repo e.g https://github.com/chis0m/p14-ansible, so my project on jenkins will be p14-ansible 
 - Goto `Dasbhoard -> p14-ansible -> Configure -> Build Configuration` change script path to `deploy/Jenkinsfile`
-- Install `ansible plugin`
+- SSH into the server and Install `ansible plugin` i.e `sudo apt install ansible`
 - Goto `Global Configuration --> Ansible` and add ansible exec path e.g `/usr/bin/` for ubuntu
 - On the browser, Goto `http://jenkins-ip:8080/credentials/store/system/domain/_/` click on Add `Credentials`
 - Choose `SSH Username with private key`. Set ID: `ssh-private-key`,  username: `ubuntu`. CLick on `Enter directly` and add a copy of your ssh private key and save

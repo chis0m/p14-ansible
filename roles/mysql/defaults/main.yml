@@ -127,7 +127,7 @@ mysql_users:
 
 mysql_users:
   - name: homestead
-    host: 172.31.94.101
+    host: 172.31.83.139
     password: sePret^i
     priv: '*.*:ALL,GRANT'
 
