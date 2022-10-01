@@ -250,3 +250,6 @@ This will trigger the p14-ansible project with the dev inventory (build paramete
   - navigate to the artificats and at the top, you would see `set me up`
   - Click on `set me up`, add your password
   - CLick on `Deploy`. Copy the credentials seen and update the deployment.yaml
+
+
+  stopped at 3:04:33
