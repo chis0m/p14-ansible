@@ -54,7 +54,8 @@ Important Setup to take note of In Jenkins Server
 - Generate Github Personal Access Token - Tick the following permissions `repo`, `read:user`, `user:email` 
 - Use it to create a new pipeline for a github repo e.g https://github.com/chis0m/p14-ansible, so my project on jenkins will be p14-ansible 
 - Goto `Dasbhoard -> p14-ansible -> Configure -> Build Configuration` change script path to `deploy/Jenkinsfile`
-- SSH into the server and Install `ansible plugin` i.e `sudo apt install ansible`
+- Install `ansible plugin` on Jenkins.
+- SSH into the jenkins server and run `sudo apt install ansible -y`
 - Goto `Global Configuration --> Ansible` and add ansible exec path e.g `/usr/bin/` for ubuntu
 - On the browser, Goto `http://jenkins-ip:8080/credentials/store/system/domain/_/` click on Add `Credentials`
 - Choose `SSH Username with private key`. Set ID: `ssh-private-key`,  username: `ubuntu`. CLick on `Enter directly` and add a copy of your ssh private key and save
@@ -69,7 +70,7 @@ Important Setup to take note of In Jenkins Server
 `Disable the host SSH key check: check`  
 `Colorized output: check` 
 
-- Copy the generated syntax and add to your Jenkinsfile
+- Copy the generated syntax and add to your Jenkinsfile add the appropriate step
 `ansiblePlaybook become: true, colorized: true, credentialsId: 'ssh-private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/{inventory}.yml', playbook: 'playbooks/site.yml'`
 
 NOTE: When using jenkins to deploy ansible, remove `ansible_ssh_private_key_file=~/.ssh/devum.pem` from inventory file because you have already added your ssh_key to jenkins
@@ -78,8 +79,7 @@ Install PHP Dependencies (Jenkins Server)
 ========================
 ```bash
 sudo apt install -y zip libapache2-mod-php phploc php-{xml,bcmath,bz2,intl,gd,mbstring,mysql,zip} mysql-client
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
+curl -sS https://getcomposer.org/installer | php && sudo mv composer.phar /usr/local/bin/composer
 ```
 
 Install plugins for artifactory
