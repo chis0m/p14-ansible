@@ -78,7 +78,7 @@ NOTE: When using jenkins to deploy ansible, remove `ansible_ssh_private_key_file
 Install PHP Dependencies (Jenkins Server)
 ========================
 ```bash
-sudo apt install -y zip libapache2-mod-php phploc php-{xml,bcmath,bz2,intl,gd,mbstring,mysql,zip} mysql-client
+sudo apt install -y zip libapache2-mod-php phploc php-{xml,bcmath,bz2,intl,gd,mbstring,mysql,zip,curl} mysql-client
 curl -sS https://getcomposer.org/installer | php && sudo mv composer.phar /usr/local/bin/composer
 ```
 
