@@ -6,13 +6,13 @@
   tasks:
     - name: install remi and rhel repo
       ansible.builtin.yum:
-        name: 
+        name:
           - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
           - dnf-utils
           - http://rpms.remirepo.net/enterprise/remi-release-8.rpm
         disable_gpg_check: yes
 
-    
+
     - name: install httpd on the webserver
       ansible.builtin.yum:
         name: httpd
@@ -21,15 +21,15 @@
     - name: ensure httpd is started and enabled
       ansible.builtin.service:
         name: httpd
-        state: started 
+        state: started
         enabled: yes
-      
+
     - name: install PHP
       ansible.builtin.yum:
         name:
-          - php 
+          - php
           - php-mysqlnd
-          - php-gd 
+          - php-gd
           - php-curl
           - unzip
           - php-common
@@ -41,19 +41,19 @@
           - php-json
         enablerepo: php:remi-7.4
         state: present
-    
+
     - name: ensure php-fpm is started and enabled
       ansible.builtin.service:
         name: php-fpm
-        state: started 
+        state: started
         enabled: yes
 
     - name: Download the artifact
       get_url:
-        url: http://174.129.52.41:8082/artifactory/PBL/php-todo
+        url: http://172.31.16.96:8082/artifactory/PBL/php-todo
         dest: /home/ec2-user/
         url_username: admin
-        url_password: AP97Jb6So7Q2E66qyK5wns4Mjgt  
+        url_password: AP97Jb6So7Q2E66qyK5wns4Mjgt
 
 
     - name: unzip the artifacts
