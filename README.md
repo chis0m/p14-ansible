@@ -252,4 +252,11 @@ This will trigger the p14-ansible project with the dev inventory (build paramete
   - CLick on `Deploy`. Copy the credentials seen and update the deployment.yaml
 
 
-  stopped at 3:04:33
+  Setting Up SonarQube
+  ======================
+- Use EC2 ubuntu 2020
+- Uncomment the sonarqube.yml and run script. Uses the sonarqube role
+- visit <public-ip>:9000/sonar and login with username/password `admin` and `admin`
+- Goto Jenkisns Server and install `SonarQube Scanner` plugin
+- Goto `Manage Jenkins > Configure System`, look for **SonarQube Servers** and set name: `sonarqube` and server url: `http://<public-ip>:9000/`
+- Generate authentication token in sonarqube. Goto `User > My Account > Security > Generate Tokens`
