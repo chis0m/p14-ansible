@@ -1,3 +1,6 @@
+Links:
+[PHP TODO repo using laravel 9](https://github.com/chis0m/p14-php-todo)
+
 Dependences to be installed
 ====================================
 
@@ -255,8 +258,58 @@ This will trigger the p14-ansible project with the dev inventory (build paramete
   Setting Up SonarQube
   ======================
 - Use EC2 ubuntu 2020
-- Uncomment the sonarqube.yml and run script. Uses the sonarqube role
+- Uncomment the sonarqube.yml and run script. Uses the `sonarqube` role
 - visit <public-ip>:9000/sonar and login with username/password `admin` and `admin`
 - Goto Jenkisns Server and install `SonarQube Scanner` plugin
-- Goto `Manage Jenkins > Configure System`, look for **SonarQube Servers** and set name: `sonarqube` and server url: `http://<public-ip>:9000/`
+- Goto `Manage Jenkins > Configure System`, look for **SonarQube Servers** and set name: `SonarQubeScanner` and server url: `http://<public-ip>:9000/`
 - Generate authentication token in sonarqube. Goto `User > My Account > Security > Generate Tokens`
+- Configure Quality Gate Jenkins Webhook in SonarQube – The URL should point to your Jenkins server http://{JENKINS_HOST}/sonarqube-webhook/. Goto `Administration > Configuration > Webhooks > Create`
+- Update the Jenkinsfile in php-todo
+  - Push to repository and run. **This would fail** but would have installed the scanner tool on the Linux server
+
+```jenkinsfile
+    stage('SonarQube Quality Gate') {
+        environment {
+            scannerHome = tool 'SonarQubeScanner'
+        }
+        steps {
+            withSonarQubeEnv('sonarqube') {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
+
+        }
+    }
+```
+- Configure `sonar-scanner.properties`. SSH into Jenkins server and `cd /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQubeScanner/conf/
+  ` and `sudo vi sonar-scanner.properties` and paste configuration related to php-todo
+  
+```text
+sonar.host.url=http://<SonarQube-Server-IP-address>:9000
+sonar.projectKey=php-todo
+#----- Default source code encoding
+sonar.sourceEncoding=UTF-8
+sonar.php.exclusions=**/vendor/**
+sonar.php.coverage.reportPaths=build/logs/clover.xml
+sonar.php.tests.reportPath=build/logs/junit.xml
+```
+
+Conditionally deploy to higher environments
+=============================================
+- Update the Jenkinsfile of the php-todo to only to run Quality Gate whenever the running branch is either develop, hotfix, release, main, or master. Also add a time snippet so the pipeline would be complete only when sonarqube is successful
+```jenkinsfile
+    stage('SonarQube Quality Gate') {
+      when { branch pattern: "^develop*|^hotfix*|^release*|^main*", comparator: "REGEXP"}
+        environment {
+            scannerHome = tool 'SonarQubeScanner'
+        }
+        steps {
+            withSonarQubeEnv('sonarqube') {
+                sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+            }
+            timeout(time: 1, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
+            }
+        }
+    }
+```
+  
